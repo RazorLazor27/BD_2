@@ -44,6 +44,7 @@ h1
 {
     font-family: "Lufga_Black"
 }
+
 .cabeza
 {
     position: sticky;
@@ -64,7 +65,6 @@ h1
 
 .cuerpo
 {
-    width: 100%;
     text-align: center;
     color:#184464;
 }
@@ -75,7 +75,7 @@ h1
     width: 100%;
     text-align: center;
     color:#ffffff;
-    background-color: #184464;
+    background-color: #0E2E45;
 }
 
 .Boton{
@@ -114,3 +114,31 @@ h1
     grid-column: 4;
     grid-row: 2;
 }
+
+#Almuerzo {
+    margin-left: auto;  
+    margin-right: auto;  
+    table-layout: fixed;
+    font-family: "Lufga";
+    border-collapse: collapse;
+  }
+  
+  #Almuerzo td, #Almuerzo th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #Almuerzo tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #Almuerzo tr:hover {background-color: #ddd;}
+
+  #Almuerzo th:hover {background-color: #0E2E45;}
+  
+  #Almuerzo th {
+    font-family: "Lufga_Black";
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #184464;
+    color: white;
+  }
