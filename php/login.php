@@ -5,35 +5,37 @@ require_once("../includes/config_session.inc.php");
 
 <?php include 'base_top.php' ?>
 
-    <form action="login.php" method="post">
-        <h2> LOGIN </h2>
-        <?php if (isset($_GET['error'])) { ?> 
-            <p class= "error"> <?php echo $_GET['error']; ?> </p>
-        <?php } ?>
-        
-        
-        <input type="text" name = "username" placeholder="Nombre y Apellido"> <br>
-
-        
-        <input type="password" name = "pwd" placeholder="Contraseña"> <br>
-
-        <button type="submit">Iniciar sesión</button>
-    </form>
+    <div style="text-align: center;">
+        <form action="login.php" method="post">
+            <h1> Login </h1>
+            <?php if (isset($_GET['error'])) { ?> 
+                <p class= "error"> <?php echo $_GET['error']; ?> </p>
+            <?php } ?>
+            
+            
+            <input type="text" name = "username" placeholder="Nombre y Apellido"> <br>
 
             
-    <h1>Registrarse</h1>
+            <input type="password" name = "pwd" placeholder="Contraseña"> <br>
 
-    <form action="../includes/signup.inc.php", method = "post">
+            <button type="submit">Iniciar sesión</button>
+        </form>
+
+                
+        <h1>Registrarse</h1>
+
+        <form action="../includes/signup.inc.php", method = "post">
+
+            <?php
+            signup_inputs();
+            ?>
+            <button>Crear cuenta nueva</button>
+
+        </form>
 
         <?php
-        signup_inputs();
+        check_signup_errors();
         ?>
-        <button>Crear cuenta nueva</button>
-
-    </form>
-
-    <?php
-    check_signup_errors();
-    ?>
-
+    </div>
+    
 <?php include 'base_bottom.php' ?>

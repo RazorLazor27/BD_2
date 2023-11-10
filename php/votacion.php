@@ -1,5 +1,5 @@
 <?php include 'base_top.php' ?>
-
-  <p>Hola soy Votaciones.</p>
-
+  <div>
+    <p>Hola soy Votaciones.</p>
+  </div>
 <?php include 'base_bottom.php' ?>

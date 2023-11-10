@@ -1,7 +1,9 @@
 <?php include 'base_top.php' ?>
 
+  <div class="cuerpo">
 
-        <p>nose xdxd</p>
+    <h1>Menú de hoy</h1>
 
-  
+  </div>
+
 <?php include 'base_bottom.php' ?>
