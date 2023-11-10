@@ -7,7 +7,7 @@ require_once("../includes/login_view.inc.php");
 <?php include 'base_top.php' ?>
 
     <div style="text-align: center;">
-        <form action="login.php" method="post">
+        <form action="../includes/login.inc.php" method="post">
             <h1> Login </h1>
             <?php if (isset($_GET['error'])) { ?> 
                 <p class= "error"> <?php echo $_GET['error']; ?> </p>
@@ -20,7 +20,7 @@ require_once("../includes/login_view.inc.php");
             
             <input type="password" name = "pwd" placeholder="Contraseña"> <br>
 
-            <button type="submit">Iniciar sesión</button>
+            <button>Iniciar sesión</button>
         </form>
       
         <?php 
