@@ -1,6 +1,7 @@
 <?php 
 require_once("../includes/signup_view.inc.php");
 require_once("../includes/config_session.inc.php");
+require_once("../includes/login_view.inc.php");
 ?>
 
 <?php include 'base_top.php' ?>
@@ -15,11 +16,16 @@ require_once("../includes/config_session.inc.php");
             
             <input type="text" name = "username" placeholder="Nombre y Apellido"> <br>
 
+
             
             <input type="password" name = "pwd" placeholder="Contraseña"> <br>
 
             <button type="submit">Iniciar sesión</button>
         </form>
+      
+        <?php 
+        check_login_errors();
+        ?>
 
                 
         <h1>Registrarse</h1>

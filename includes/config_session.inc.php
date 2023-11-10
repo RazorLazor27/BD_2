@@ -14,18 +14,43 @@ session_set_cookie_params([
 
 session_start();
 
-//Si no hemos cambiado el id, entonces cambialo xddd
-if (!isset($_SESSION["ultimo_valor"])) {
-    rehacer_id();
-} else {
-    $tiempo_sesion = 60*30;
-    if(time()-$_SESSION["ultimo_valor"] >= $tiempo_sesion) {
-        rehacer_id();
+if(isset($_SESSION["user_id"])){
+    if (!isset($_SESSION["ultimo_valor"])) {
+        rehacer_id_loggedin();
+    } else {
+        $tiempo_sesion = 60*30;
+        if(time()-$_SESSION["ultimo_valor"] >= $tiempo_sesion) {
+            rehacer_id_loggedin();
+        }
+    
     }
-
+} else {
+    if (!isset($_SESSION["ultimo_valor"])) {
+        rehacer_id();
+    } else {
+        $tiempo_sesion = 60*30;
+        if(time()-$_SESSION["ultimo_valor"] >= $tiempo_sesion) {
+            rehacer_id();
+        }
+    }
 }
+
+//Si no hemos cambiado el id, entonces cambialo xddd
+
 
 function rehacer_id(){
     session_regenerate_id(true);
+    $_SESSION["ultimo_valor"] = time();
+}
+
+function rehacer_id_loggedin(){
+
+    session_regenerate_id(true);
+
+    $user_id = $_SESSION["user_id"];
+    $newSessionId = session_create_id();
+    $sessionId = $newSessionId . "_" . $user_id;
+    session_id($sessionId);
+
     $_SESSION["ultimo_valor"] = time();
 }
