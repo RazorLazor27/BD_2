@@ -42,12 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $_SESSION["signup_data"] = $signupData;
 
-            header("Location: ../login.php");
+            header("Location: ../php/login.php");
             die();
         }
 
         crear_usuario($pdo, $username, $pwd, $email);
-        header("Location: ../login.php?signup=success");
+        header("Location: ../php/login.php?signup=success");
         $pdo = null;
         $stmt = null;
         die();
@@ -57,6 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
 } else {
-    header("Location: ../index.php");
+    header("Location: ../php/index.php");
     die();
 }
