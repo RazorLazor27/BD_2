@@ -1,5 +1,6 @@
+</div>
 <footer class="piedepagina">
-        <p>LSKDHASKDHASJDASDHK</p>
+        <p>Hecho por loh choro' Nico y Flan</p>
     </footer>
 
 </body>
