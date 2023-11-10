@@ -21,9 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors["login_incorrecto"] = "Informacion del Login incorrecta!";
         }
 
-        if (!usuario_no_existe($result) && contrasena_no_existe($pwd, $result["pwd"])){
-            $errors["login_incorrecto"] = "Informacion del Login incorrecta!";
-        }
+        
 
         require_once("config_session.inc.php");
 
