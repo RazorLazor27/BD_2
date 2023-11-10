@@ -1,4 +1,0 @@
-CREATE TABLE ingredientes (
-	ingre_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	ingre_nombre VARCHAR(20) NOT NULL
-);

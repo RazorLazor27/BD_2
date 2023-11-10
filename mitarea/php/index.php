@@ -13,6 +13,11 @@
 
 <body>
 
+  <?php
+  // Tu código PHP va aquí
+  echo "¡Hola! Esto es PHP en acción.";
+  ?>
+
   <div class="pagina">
 
     <!-- Cabecera/Menú -->
