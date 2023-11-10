@@ -19,10 +19,10 @@ require_once("includes/config_session.inc.php");
         <?php } ?>
         
         
-        <input type="text" name = "username" placeholder="Nombre de usuario"> <br>
+        <input type="text" name = "username" placeholder="Nombre y Apellido"> <br>
 
         
-        <input type="password" name = "password" placeholder="Contraseña"> <br>
+        <input type="password" name = "pwd" placeholder="Contraseña"> <br>
 
         <button type="submit">Iniciar sesión</button>
     </form>
