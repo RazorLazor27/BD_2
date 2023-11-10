@@ -18,6 +18,7 @@ function contrasena_no_existe(string $pwd, string $hashpwd){
     }
 }
 
+
 function input_vacio(string $username, string $pwd){
     if (empty($username) || empty($pwd)){
         return true;
