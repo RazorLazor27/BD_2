@@ -1,13 +1,48 @@
-body {
+@font-face 
+{
+    font-family: "Rockweb";
+    src: url("../fonts/rockweb.ttf");
+}
+
+@font-face 
+{
+    font-family: "DFDMiliciana";
+    src: url("../fonts/dfdMiliciana.otf");
+}
+
+@font-face 
+{
+    font-family: "Lufga_Black";
+    src: url("../fonts/Lufga-Black.otf");
+}
+
+@font-face 
+{
+    font-family: "Lufga";
+    src: url("../fonts/Lufga-Light.otf");
+}
+
+body
+{
     margin: 0;
     min-height: 100vh;
     display: grid;
-    grid-template-rows: 115px 1fr 50px;
+    grid-template-rows: 112px 1fr 50px;
 
 }
 
-a{
+a
+{
+    font-family: "DFDMiliciana";
+    -webkit-text-stroke-width: 1px; 
+    -webkit-text-stroke-color: black;
+    text-decoration: none;
     color: #ffffff;
+}
+
+h1
+{
+    font-family: "Lufga_Black"
 }
 .cabeza
 {
@@ -15,12 +50,22 @@ a{
     top: 0;
     width: 100%;
     display: grid;
-    grid-template-columns: 258px 1fr 1fr 1fr;
+    grid-template-columns: 269px 1fr 1fr 1fr;
     background-color: #184464;
+}
+
+.cabeza > div
+{
+    text-align: center;
+    vertical-align: middle;
+    border: 5px;
+    border-color: white;
 }
 
 .cuerpo
 {
+    width: 100%;
+    text-align: center;
     color:#184464;
 }
   
@@ -31,14 +76,6 @@ a{
     text-align: center;
     color:#ffffff;
     background-color: #184464;
-}
-
-.cabeza > div
-{
-    text-align: center;
-    vertical-align: middle;
-    border: 5px;
-    border-color: white;
 }
 
 .Boton{
