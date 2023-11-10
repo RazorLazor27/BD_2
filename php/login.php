@@ -1,6 +1,7 @@
 <?php 
 require_once("../includes/signup_view.inc.php");
 require_once("../includes/config_session.inc.php");
+require_once("../includes/login_view.inc.php");
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ require_once("../includes/config_session.inc.php");
 </head>
 <body>
 
-    <form action="login.php" method="post">
+    <form action="../includes/login.php" method="post">
         <h2> LOGIN </h2>
         <?php if (isset($_GET['error'])) { ?> 
             <p class= "error"> <?php echo $_GET['error']; ?> </p>
@@ -24,8 +25,12 @@ require_once("../includes/config_session.inc.php");
         
         <input type="password" name = "pwd" placeholder="Contraseña"> <br>
 
-        <button type="submit">Iniciar sesión</button>
+        <button>Iniciar sesión</button>
     </form>
+    
+    <?php 
+    check_login_errors();
+    ?>
 
             
     <h1>Registrarse</h1>
