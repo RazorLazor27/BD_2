@@ -31,7 +31,7 @@ function mail_registrado(object $pdo, string $email){
     }
 }
 
-//Si el nombre de usuario ya esta tomado
+//Si el nombre de usuario ya esta tomado por alguien mas
 function nombre_valido(object $pdo, string $username){
     if (get_username($pdo, $username)){
         return true;

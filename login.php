@@ -1,3 +1,8 @@
+<?php 
+require_once("includes/signup_view.inc.php");
+require_once("includes/config_session.inc.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +38,10 @@
         <button>Signup</button>
 
     </form>
+
+    <?php
+    check_signup_errors();
+    ?>
 
 </body>
 </html>

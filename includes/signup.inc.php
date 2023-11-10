@@ -7,21 +7,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST["email"];
 
     try {
-        require_once "bhd.inc.php";
+        require_once "dbh.inc.php";
         require_once "signup_model.inc.php";
-        require_once "signup_contr.in.php";
+        require_once "signup_contr.inc.php";
 
         //Error Handlres (Evitar que el usuario haga cosas raras o se equivoque en el input)
+        $errors = [];
+        
         if (input_vacio($username,$pwd,$email)) {
+            $errors["input_vacio"] = "Porfavor llenar todos los campos";
         }
 
         if (mail_valido($email)) {
+            $errors["mail_valido"] = "Este formato de email no es valido, Por favor escribir un email valido";
         }
 
         if (mail_registrado($pdo, $email)) {
+            $errors["mail_registrado"] = "Este email ya esta registrado, por favor seleccionar otro";
         }
 
         if (nombre_valido($pdo, $username)){
+            $errors["nombre_valido"] = "Este nombre de usuario ya ha sido registrado previamente";
+        }
+
+        require_once "config_session.inc.php";
+
+        if ($errors) {
+            $_SESSION["errors_signup"] = $errors;
+            header("Location: ../login.php");
+            die();
         }
 
     } catch (PDOException $e) {
