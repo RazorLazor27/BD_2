@@ -28,7 +28,7 @@ require_once("includes/config_session.inc.php");
     </form>
 
             
-    <h2>Signup</h2>
+    <h1>Registrarse</h1>
 
     <form action="includes/signup.inc.php", method = "post">
 

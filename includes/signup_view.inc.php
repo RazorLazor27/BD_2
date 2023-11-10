@@ -6,10 +6,10 @@ declare(strict_types= 1);
 function signup_inputs(){
 
     if(isset($_SESSION["signup_data"]["username"]) && !isset($_SESSION["errors_signup"]["nombre_valido"])) {
-        echo '<input type="text" name="username" placeholder="Nombre de Usuario" value="' . $_SESSION["signup_data"]["username"] . '">';
+        echo '<input type="text" name="username" placeholder="Nombre y Apellido" value="' . $_SESSION["signup_data"]["username"] . '">';
 
     } else {
-        echo '<input type="text" name="username" placeholder="Nombre de Usuario">';
+        echo '<input type="text" name="username" placeholder="Nombre y Apellido">';
     }
 
     echo '<input type="password" name="pwd" placeholder="Contraseña">';

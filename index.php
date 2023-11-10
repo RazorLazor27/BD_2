@@ -51,7 +51,7 @@
 
       <div class="boton">
 
-        <a href="login.html">Debería llevarme al login.</a>
+        <a href="login.php">Debería llevarme al login.</a>
 
       </div>
 
