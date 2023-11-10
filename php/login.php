@@ -1,6 +1,6 @@
 <?php 
-require_once("includes/signup_view.inc.php");
-require_once("includes/config_session.inc.php");
+require_once("../includes/signup_view.inc.php");
+require_once("../includes/config_session.inc.php");
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ require_once("includes/config_session.inc.php");
             
     <h1>Registrarse</h1>
 
-    <form action="includes/signup.inc.php", method = "post">
+    <form action="../includes/signup.inc.php", method = "post">
 
         <?php
         signup_inputs();
