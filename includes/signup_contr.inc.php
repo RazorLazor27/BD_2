@@ -5,7 +5,7 @@ declare(strict_types= 1);
 
 
 //La funcion chequea que el usuario llena todos los campos de una solicitud
-function input_vacio(string $username, $pwd, $email){
+function input_vacio(string $username, string $pwd, string $email){
     if (empty($username) || empty($pwd) || empty($email)){
         return true;
     } else {
@@ -38,5 +38,9 @@ function nombre_valido(object $pdo, string $username){
     } else {
         return false;
     }
+}
+
+function crear_usuario(object $pdo, string $username, string $pwd, string $email){
+    set_usuario($pdo, $username, $pwd, $email);
 }
 

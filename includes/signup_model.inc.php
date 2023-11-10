@@ -26,3 +26,20 @@ function get_mail(object $pdo, string $mail){
     return $result;
 }
 
+function set_usuario(object $pdo, string $username, string $pwd, string $email){
+    $query = "INSERT INTO users (user_name, user_password, email) VALUES
+    (:username, :pwd, :email)";
+    $stmt = $pdo->prepare($query);
+    
+    $options = [
+        'cost' => 12
+    ];
+
+    $hashpwd = password_hash($pwd, PASSWORD_BCRYPT, $options);
+    
+    $stmt->bindParam(":username", $username);
+    $stmt->bindParam(":pwd", $hashpwd);
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+}
+

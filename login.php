@@ -18,24 +18,24 @@ require_once("includes/config_session.inc.php");
             <p class= "error"> <?php echo $_GET['error']; ?> </p>
         <?php } ?>
         
-        <label> Nombre de Usuario </label>
-        <input type="text" name = "username" placeholder="User Name"> <br>
+        
+        <input type="text" name = "username" placeholder="Nombre de usuario"> <br>
 
-        <label> Password </label>
-        <input type="password" name = "password" placeholder="password"> <br>
+        
+        <input type="password" name = "password" placeholder="Contraseña"> <br>
 
-        <button type="submit">LOGIN</button>
+        <button type="submit">Iniciar sesión</button>
     </form>
 
             
-    <h3>Signup</h3>
+    <h2>Signup</h2>
 
     <form action="includes/signup.inc.php", method = "post">
 
-        <input type="text" name="username" placeholder="Nombre de Usuario">
-        <input type="password" name="pwd"placeholder="Contraseña">
-        <input type="text" name="email"placeholder="E-Mail">
-        <button>Signup</button>
+        <?php
+        signup_inputs();
+        ?>
+        <button>Crear cuenta nueva</button>
 
     </form>
 

@@ -3,7 +3,7 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $username = $_POST["username"];
-    $password = $_POST["pwd"];
+    $pwd = $_POST["pwd"];
     $email = $_POST["email"];
 
     try {
@@ -34,9 +34,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($errors) {
             $_SESSION["errors_signup"] = $errors;
+
+            $signupData = [
+                "username" => $username,
+                "email"=> $email
+            ];
+
+            $_SESSION["signup_data"] = $signupData;
+
             header("Location: ../login.php");
             die();
         }
+
+        crear_usuario($pdo, $username, $pwd, $email);
+        header("Location: ../login.php?signup=success");
+        $pdo = null;
+        $stmt = null;
+        die();
 
     } catch (PDOException $e) {
         die ("Query murio :(". $e->getMessage());
