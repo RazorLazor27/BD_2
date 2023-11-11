@@ -1,5 +1,3 @@
-
-
 <?php include 'base_top.php'?>
   <div class="cuerpo">
     <div style="min-height: 70vh;">
