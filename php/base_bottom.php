@@ -5,15 +5,16 @@ require_once("../includes/login_view.inc.php");
 ?>
 
 
-    <div class="piedepagina">
-        <p>Hecho por loh choro' Nico y Flan.
+    <footer class="piedepagina">
+        <p>Hecho por loh choro' Nico y Flan
 
         <?php
             mostrar_nombre();
         ?>
 
         </p>
-</div>
+    </footer>
+
 </body>
 
 </html>

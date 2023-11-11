@@ -1,3 +1,9 @@
+<?php 
+require_once("../includes/signup_view.inc.php");
+require_once("../includes/config_session.inc.php");
+require_once("../includes/login_view.inc.php");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -31,18 +37,12 @@
             <?php
             //Esto significa que estamos logeados
             if (isset($_SESSION["user_id"])) { ?>
-                <form action="../includes/perfil.inc.php" method="post">
-                    <button title="Perfil" style="font-size: 25px">Perfil</button>
-                    
-                </form>
-
-                
+                <a title="Perfil de Usuario" href="perfil.php" style="font-size: 25px">Perfil</a>
                 <?php 
             } else { ?>
                 <a title="Inicio de Sesión" href="login.php" style="font-size: 25px">Inicia Sesión</a>
                 <?php
             } ?>
-            
         
         </div>
         <div class = "Boton Recetas">
