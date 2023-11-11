@@ -18,16 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = get_user($pdo, $username);
 
         if (usuario_no_existe($result)){
-            $errors["login_incorrecto"] = "Informacion del Login incorrecta!";
+            $errors["login_incorrect"] = "Informacion del Login incorrecta!";
         }
 
-        
+        if(!usuario_no_existe($result) && is_password_wrong($pwd, $result["user_password"])){
+            $errors["login_incorrect"] = "Informacion del Login incorrecta!";
+        }
 
         require_once("config_session.inc.php");
 
         if ($errors){
             $_SESSION["errors_login"] = $errors;
-            header("Location: ../index.php");
+            header("Location: ../php/login.php");
             die();
         }
 
@@ -46,15 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $statement = null;
         die();
 
-
-
-
     } catch (PDOException $e) {
         die("Query Failed". $e->getMessage());
     }
 
 } else {
-    header("Location: ../php/index.php");
+    header("Location: ../php/login.php");
     die();
 }
 

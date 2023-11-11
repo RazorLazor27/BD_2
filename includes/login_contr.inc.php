@@ -10,7 +10,7 @@ function usuario_no_existe(bool|array $result){
     }
 }
 
-function contrasena_no_existe(string $pwd, string $hashpwd){
+function is_password_wrong(string $pwd, string $hashpwd){
     if (!password_verify($pwd, $hashpwd)) {
         return true;
     } else {

@@ -14,10 +14,7 @@ require_once("../includes/login_view.inc.php");
             <?php } ?>
             
             
-            <input type="text" name = "username" placeholder="Nombre y Apellido"> <br>
-
-
-            
+            <input type="text" name = "username" placeholder="Nombre y Apellido"> <br>            
             <input type="password" name = "pwd" placeholder="Contraseña"> <br>
 
             <button>Iniciar sesión</button>
