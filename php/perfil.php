@@ -10,6 +10,14 @@ require_once("../includes/perfil_view.inc.php");
         <form action="../includes/perfil_view.inc.php" method="post">
         <?php
             MostrarPerfil();
+            $hostname = gethostname();
+            $nameee = "DESKTOP-BC8H7JT";
+            if ($hostname == $nameee){
+                //echo "The name of your computer is: $hostname";
+            } else {
+                echo "The name of your computer is: $hostname";
+            }
+            
             
         ?>
         </form>
