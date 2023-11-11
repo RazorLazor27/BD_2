@@ -1,9 +1,10 @@
 <?php
 
 declare(strict_types= 1);
+
 function mostrar_nombre(){
     if (isset($_SESSION["user_id"])){
-        echo "you are logged in as" . $_SESSION["user_username"];
+        echo "you are logged in as " . $_SESSION["user_username"];
     } else {
         echo "You are not logged in";
     }

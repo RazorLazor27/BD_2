@@ -6,6 +6,17 @@ require_once("../includes/login_view.inc.php");
 
 <?php include 'base_top.php'?>
   <div class="cuerpo">
+    
+    <h3>
+      <?php
+      mostrar_nombre();
+      ?>
+    </h3>
+    
+    <h3>Logout</h3>
+      <form action="../includes/logout.inc.php" method="post">
+      <button>Logout</button>
+    </form>
 
     <h1>Menú de hoy</h1>
 
