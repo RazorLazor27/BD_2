@@ -27,19 +27,29 @@ function get_mail(object $pdo, string $mail){
 }
 
 function set_usuario(object $pdo, string $username, string $pwd, string $email){
-    $query = "INSERT INTO users (user_name, user_password, email) VALUES
-    (:username, :pwd, :email)";
+    $query = "INSERT INTO users (user_name, user_password, email, user_num_almuerzos, 
+    users_login_date, users_login_hour) VALUES
+    (:username, :pwd, :email, :num, :tdate, :ttime)";
     $stmt = $pdo->prepare($query);
     
     $options = [
         'cost' => 12
     ];
 
+    $numerito = 0;
+    $dateActual = date("Y-m-d");
+    $timeActual = date("H:i:s");
+
+
+
     $hashpwd = password_hash($pwd, PASSWORD_BCRYPT, $options);
     
     $stmt->bindParam(":username", $username);
     $stmt->bindParam(":pwd", $hashpwd);
     $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":num", $numerito);
+    $stmt->bindParam("tdate", $dateActual);
+    $stmt->bindParam("ttime", $timeActual);
     $stmt->execute();
 }
 
