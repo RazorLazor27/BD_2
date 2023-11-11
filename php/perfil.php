@@ -5,9 +5,12 @@ require_once("../includes/perfil_view.inc.php");
 
     <div style="text-align: center;">
         <form action="../includes/perfil_view.inc.php" method="post">
-        <?php
-            MostrarPerfil();    
-        ?>
+
+            <p> <?php echo getMail(); ?>  </p>
+            <p> <?php echo getLoginDate(); ?> </p>
+            <p> <?php echo getLoginTime(); ?> </p>
+            <p> <?php echo getName(); ?> </p>
+        
         </form>
 
       <h3>Logout</h3>
