@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$dbname = "tarea_2_bd";
+$dbname = "primerabase";
 $dbuser = "root";
-$dbpassword = "!Razorlazor123";
+$dbpassword = "";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpassword);

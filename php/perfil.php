@@ -13,6 +13,11 @@ require_once("../includes/perfil_view.inc.php");
             
         ?>
         </form>
+
+      <h3>Logout</h3>
+        <form action="../includes/logout.inc.php" method="post">
+          <button>Logout</button>
+        </form>
     </div>
     
 <?php include 'base_bottom.php' ?>
