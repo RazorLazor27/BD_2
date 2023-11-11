@@ -16,6 +16,7 @@ if ($hostname == $admin){
     $dbpassword = "";
 }
 
+
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpassword);
 
