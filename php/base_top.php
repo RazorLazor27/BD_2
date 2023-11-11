@@ -35,5 +35,3 @@
         </div>
     </div>
     <!-- Contenido de la página, cuerpo completo de la página -->
-
-    

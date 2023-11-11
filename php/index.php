@@ -1,5 +1,10 @@
-<?php include 'base_top.php'?>
+<?php 
+require_once("../includes/signup_view.inc.php");
+require_once("../includes/config_session.inc.php");
+require_once("../includes/login_view.inc.php");
+?>
 
+<?php include 'base_top.php'?>
   <div class="cuerpo">
 
     <h1>Menú de hoy</h1>
