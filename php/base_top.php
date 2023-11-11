@@ -28,7 +28,17 @@
         <a title="Votación Semanal para elegir el plato de fondo de los días Viernes." href="votacion.php" style="font-size: 35px">Votación semanal</a>
         </div>
         <div class = "Boton Usuario">
-        <a title="Inicio de Sesión" href="login.php" style="font-size: 25px">Inicia Sesión</a>
+            <?php
+            //Esto significa que estamos logeados
+            if (isset($_SESSION["user_id"])) { ?>
+                <a title="Perfil" href="perfil.php" style="font-size: 25px">Perfil</a>
+                <?php 
+            } else { ?>
+                <a title="Inicio de Sesión" href="login.php" style="font-size: 25px">Inicia Sesión</a>
+                <?php
+            } ?>
+            
+        
         </div>
         <div class = "Boton Recetas">
         <a title="Búsqueda de recetas históricas del casino USM" href="recetas.php" style="font-size: 25px">Busca tu receta!</a>
