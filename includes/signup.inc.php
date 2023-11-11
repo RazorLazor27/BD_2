@@ -57,6 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
 } else {
-    header("Location: ../php/index.php");
+    header("Location: ../php/login.php");
     die();
 }
