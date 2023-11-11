@@ -22,3 +22,8 @@ function MostrarPerfil(){
     }
      
 }
+
+function getName(){
+    $nom = $_SESSION["user_username"];
+
+}

@@ -13,3 +13,5 @@ function getDatosPerfil(object $pdo, string $username){
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function getNameM(object $pdo, string $username){}
