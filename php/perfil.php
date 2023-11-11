@@ -17,6 +17,35 @@ require_once("../includes/perfil_view.inc.php");
         <form action="../includes/logout.inc.php" method="post">
           <button>Logout</button>
         </form>
+
+        <form action="../includes/userdelete.inc.php" method="post">
+            <p>Si desea borrar su cuenta, favor de apretar el siguiente boton</p>
+            <button onclick="borrar_cuenta_click()">Borrar Cuenta</button>
+            <p id="demo"></p>
+        </form>
     </div>
+
+    <html>
+    <head>
+        <script>
+            function borrar_cuenta_click() {
+                var x;
+                var r = confirm("¿Estas Seguro De Querer Borrar tu Cuenta?");
+                if (r == true) {
+                x = "Confirmado.";
+                setTimeout(function() {
+                    document.getElementById("demo").innerHTML = "Esperando 1 segundo ...";
+                },1000);
+            }
+                else {
+                x = "";
+            }
+            document.getElementById("demo").innerHTML = x;
+        }
+        </script>
+    </head>
+    </html> 
+
+    
     
 <?php include 'base_bottom.php' ?>
