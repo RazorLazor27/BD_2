@@ -26,3 +26,7 @@ function input_vacio(string $username, string $pwd){
         return false;
     }
 }
+
+function actualizar_login(object $pdo, string $username){
+    update_user($pdo, $username);
+}

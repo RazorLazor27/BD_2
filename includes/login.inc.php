@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         $result = get_user($pdo, $username);
-
+        actualizar_login($pdo, $username);
         if (usuario_no_existe($result)){
             $errors["login_incorrect"] = "Informacion del Login incorrecta!";
         }
@@ -42,8 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
         $_SESSION["ultimo_valor"] = time();
 
+        
+
 
         header("Location: ../php/index.php?login=success");
+        
         $pdo = null;
         $statement = null;
         die();

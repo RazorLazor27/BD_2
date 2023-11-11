@@ -48,8 +48,8 @@ function set_usuario(object $pdo, string $username, string $pwd, string $email){
     $stmt->bindParam(":pwd", $hashpwd);
     $stmt->bindParam(":email", $email);
     $stmt->bindParam(":num", $numerito);
-    $stmt->bindParam("tdate", $dateActual);
-    $stmt->bindParam("ttime", $timeActual);
+    $stmt->bindParam(":tdate", $dateActual);
+    $stmt->bindParam(":ttime", $timeActual);
     $stmt->execute();
 }
 
