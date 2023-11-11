@@ -1,3 +1,6 @@
+<?php 
+require_once("../includes/login_view.inc.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -34,5 +37,11 @@
         <a title="Búsqueda de recetas históricas del casino USM" href="recetas.php" style="font-size: 25px">Busca tu receta!</a>
         </div>
     </div>
+
+    <h3> Logout </h3>
+    <form action="../includes/logout.inc.php" method="post">
+        <button>Logout</button>
+    </form>
+    <h3> <?php mostrar_nombre()?></h3>
 
     <!-- Contenido de la página, cuerpo completo de la página -->
