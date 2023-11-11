@@ -31,7 +31,12 @@
             <?php
             //Esto significa que estamos logeados
             if (isset($_SESSION["user_id"])) { ?>
-                <a title="Perfil" href="perfil.php" style="font-size: 25px">Perfil</a>
+                <form action="../includes/perfil.inc.php" method="post">
+                    <button title="Perfil" style="font-size: 25px">Perfil</button>
+                    
+                </form>
+
+                
                 <?php 
             } else { ?>
                 <a title="Inicio de Sesión" href="login.php" style="font-size: 25px">Inicia Sesión</a>
