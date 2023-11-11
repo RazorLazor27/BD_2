@@ -52,7 +52,7 @@ h1
     width: 100%;
     display: grid;
     grid-template-columns: 269px 1fr 1fr 1fr;
-    background-color: #184464;
+    background-color: #205981;
 }
 
 .cabeza > div
@@ -71,6 +71,7 @@ h1
   
 .piedepagina
 {
+
     bottom: 0;
     width: 100%;
     text-align: center;
@@ -119,6 +120,8 @@ h1
     margin-left: auto;  
     margin-right: auto;  
     table-layout: fixed;
+    min-height: 60vh;
+    min-width: 170vh;
     font-family: "Lufga";
     border-collapse: collapse;
   }
@@ -136,9 +139,53 @@ h1
   
   #Almuerzo th {
     font-family: "Lufga_Black";
+    font-size: x-large;
+    width: 30%;
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #184464;
     color: white;
-  }
+    }
+
+/* Tabla de almuerzos de la semana */
+#Semanal {
+    margin-left: auto;  
+    margin-right: auto;
+    min-height: 60vh;
+    min-width: 180vh;
+    table-layout: fixed;
+    font-family: "Lufga";
+    border-collapse: collapse;
+}
+
+/*
+td:hover::after,
+.col:hover::after { 
+    background-color: #ffa;
+    content: '\00a0';  
+    height: 10000px;    
+    left: 0;
+    position: absolute;  
+    top: -5000px;
+    width: 100%;
+    z-index: -1;        
+}
+*/
+
+    #Semanal td, #Semanal th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #Semanal .Subtitulo{
+
+    }
+
+    #Semanal th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #184464;
+        color: white;
+    }
