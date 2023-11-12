@@ -152,6 +152,8 @@ h1
 
 /* --------------------------------------------------------- Cuerpo/Contenido de página: Home --------------------------------------------------------- */
 
+/* ------------------------ Tabla: Menú del día ------------------------ */
+
 #Almuerzo {
     margin-left: auto;  
     margin-right: auto;  
@@ -184,7 +186,7 @@ h1
     color: white;
     }
 
-/* Tabla de almuerzos de la semana */
+/* ------------------------ Tabla: Menús de la semana ------------------------ */
 #Semanal {
     margin-left: auto;  
     margin-right: auto;
