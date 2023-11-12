@@ -1,5 +1,7 @@
 <?php
 
+/* ALO */
+
 $servername="localhost";
 $username ="admin";
 $password = "!dBeK8jy21r/3nMt";
