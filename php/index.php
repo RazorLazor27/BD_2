@@ -2,20 +2,16 @@
 /* Incrustar franja superior*/ 
 include 'base_top.php';
 
-// $servername="localhost";
-// $username ="sa";
-// $password = "/_WmC5e84uM!3fao";
-// $database = "primerabase";
-
 $servername="localhost";
-$username ="root";
-$password = "!Razorlazor123";
-$database = "tarea_2_bd";
+$username ="admin";
+$password = "!dBeK8jy21r/3nMt";
+$database = "primerabase";
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+
 $entrada = mysqli_query($conn, "select * from recetas where receta_type=1 limit 1");
 $plato = mysqli_query($conn, "select * from recetas where receta_type=2 limit 1");
 $postre = mysqli_query($conn, "select * from recetas where receta_type=3 limit 1");

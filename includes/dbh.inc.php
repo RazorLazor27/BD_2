@@ -1,24 +1,12 @@
 <?php
-$host = 'localhost';
-$dbuser = "root";
 
-$dbname;
-$dbpassword;
-
-$admin = "DESKTOP-BC8H7JT";
-$hostname = gethostname();
-
-if ($hostname == $admin){
-    $dbname = "tarea_2_bd";
-    $dbpassword = "!Razorlazor123";
-} else {
-    $dbname = "primerabase";
-    $dbpassword = "";
-}
-
+$servername="localhost";
+$username ="admin";
+$password = "!dBeK8jy21r/3nMt";
+$database = "primerabase";
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpassword);
+    $pdo = new PDO("mysql:host=$servename;dbname=$database", $username, $password);
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
