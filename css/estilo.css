@@ -58,7 +58,7 @@ h1
     border-color: white;
 }
 
-.cabeza > a
+.cabeza a
 {
     font-family: "DFDMiliciana";
     -webkit-text-stroke-width: 1px; 
