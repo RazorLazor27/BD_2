@@ -39,6 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $_SESSION["user_id"] = $result["id"];
         $_SESSION["user_username"] = $result["user_name"];
+        $_SESSION["email"] = $result["email"];
+        $_SESSION["login_date"] = $result["users_login_date"];
+        $_SESSION["login_time"] = $result["users_login_hour"];
         
         $_SESSION["ultimo_valor"] = time();
 

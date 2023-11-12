@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 function MostrarPerfil(){
     if (isset($_SESSION["user_id"])){
         echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
@@ -25,5 +24,17 @@ function MostrarPerfil(){
 
 function getName(){
     $nom = $_SESSION["user_username"];
-
+    echo htmlspecialchars($nom);
+}
+function getMail(){
+    $mail = $_SESSION["email"];
+    echo htmlspecialchars($mail);
+}
+function getLoginDate(){
+    $auxd = $_SESSION["login_date"];
+    echo htmlspecialchars($auxd);
+}
+function getLoginTime(){
+    $auxt = $_SESSION["login_time"];
+    echo htmlspecialchars($auxt);
 }
