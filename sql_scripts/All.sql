@@ -38,7 +38,7 @@ CREATE TABLE lista_ingredientes (
 
 create table recetas (
 	receta_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    receta_foto BLOB,
+    receta_foto LONGBLOB,
     receta_nombre VARCHAR(100) NOT NULL,
     receta_instrucciones VARCHAR(1000),
     receta_tiempo float,
