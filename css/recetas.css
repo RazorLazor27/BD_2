@@ -1,0 +1,27 @@
+table {   
+  background:white;
+}
+  
+trFila{
+    height: 30px;
+}
+
+.tdFoto{
+    width: 50px;
+}
+
+
+.tdNombre{
+    width: 100px;
+
+}
+
+
+.tdPreparacion{
+    
+    text-align: left;
+}
+
+.tdOpcion{
+    width: 50px;
+}
