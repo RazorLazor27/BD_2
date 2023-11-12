@@ -10,6 +10,7 @@ require_once("../includes/perfil_view.inc.php");
             <p> <?php echo getLoginDate(); ?> </p>
             <p> <?php echo getLoginTime(); ?> </p>
             <p> <?php echo getName(); ?> </p>
+            <p> <?php echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';?> </p>
         
         </form>
 
@@ -32,14 +33,11 @@ require_once("../includes/perfil_view.inc.php");
                 var x;
                 var r = confirm("¿Estas Seguro De Querer Borrar tu Cuenta?");
                 if (r == true) {
-                x = "Confirmado.";
-                setTimeout(function() {
-                    document.getElementById("demo").innerHTML = "Esperando 1 segundo ...";
-                },1000);
-            }
-                else {
-                x = "";
-            }
+                    var form =document.getElementById("delete-form");
+                    form.submit();
+                } else {
+                    x = "";
+                }   
             document.getElementById("demo").innerHTML = x;
         }
         </script>

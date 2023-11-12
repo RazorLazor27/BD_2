@@ -2,10 +2,15 @@
 /* Incrustar franja superior*/ 
 include 'base_top.php';
 
+// $servername="localhost";
+// $username ="sa";
+// $password = "/_WmC5e84uM!3fao";
+// $database = "primerabase";
+
 $servername="localhost";
-$username ="sa";
-$password = "/_WmC5e84uM!3fao";
-$database = "primerabase";
+$username ="root";
+$password = "!Razorlazor123";
+$database = "tarea_2_bd";
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_error) {
