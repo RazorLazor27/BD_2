@@ -1,9 +1,10 @@
 <?php 
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+session_start();
+if ($_SERVER["REQUEST_METHOD"] === "POST" && $_SESSION["delete"] == 1) {
 
     $username = $_SESSION["user_username"];
     $id = $_SESSION["user_id"];
+    $id = (int)$id;
 
     try {
         require_once "dbh.inc.php";
@@ -14,8 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $stmt->bindParam(":id", $id);
        
-        $stmt->execute();
-
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "CAGO LA WEA". $e->getMessage();
+        }
         $pdo = null;
         $stmt = null;
 
@@ -26,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Query Failed". $e->getMessage());
     }
  
-    
+
 
 } else {
     header("Location: ../php/login.php");

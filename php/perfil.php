@@ -34,9 +34,10 @@ require_once("../includes/perfil_view.inc.php");
                 var r = confirm("¿Estas Seguro De Querer Borrar tu Cuenta?");
                 if (r == true) {
                     var form =document.getElementById("delete-form");
+                    <?php $_SESSION["delete"] = 1; ?>
                     form.submit();
                 } else {
-                    x = "";
+                    return
                 }   
             document.getElementById("demo").innerHTML = x;
         }
