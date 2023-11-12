@@ -2,6 +2,8 @@
 
 declare(strict_types= 1);
 
+date_default_timezone_set('Etc/GMT-3');
+
 function get_user(object $pdo, string $username){
     $query = "SELECT * FROM users WHERE user_name = :username;";
 
