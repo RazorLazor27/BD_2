@@ -1,58 +1,111 @@
-<?php include 'base_top.php'?>
-  <div class="cuerpo">
-    <div style="min-height: 70vh;">
-    <h1>Menú de hoy</h1>
+<?php 
+/* Incrustar franja superior*/ 
+include 'base_top.php';
 
-      <table id="Almuerzo">
-        <tr>
-          <th>Plato de Entrada</th>
-          <td>Platito</td>
-        </tr>
-        <tr>
-          <th>Plato de Fondo</th>
-          <td>Platito</td>
-        </tr>
-        <tr>
-          <th>Postre</th>
-          <td>Platito</td>
-        </tr>
-      </table>
-    </div>
-    <br>
+$servername="localhost";
+$username ="sa";
+$password = "/_WmC5e84uM!3fao";
+$database = "primerabase";
+$conn = new mysqli($servername, $username, $password, $database);
 
-    <h1>Menú Semanal</h1>
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+$entrada = mysqli_query($conn, "select * from recetas where receta_type=1 limit 1");
+$plato = mysqli_query($conn, "select * from recetas where receta_type=2 limit 1");
+$postre = mysqli_query($conn, "select * from recetas where receta_type=3 limit 1");
 
-    <table id="Semanal" style="margin-bottom: 50px;">
+$p1 = mysqli_fetch_assoc($entrada);
+$p2 = mysqli_fetch_assoc($plato); 
+$p3 = mysqli_fetch_assoc($postre);  
+
+$entradas = mysqli_query($conn, "select * from recetas where receta_type=1 limit 5");
+$platos = mysqli_query($conn, "select * from recetas where receta_type=2 limit 5");
+$postres = mysqli_query($conn, "select * from recetas where receta_type=3 limit 5");
+?>
+
+<div class="cuerpo">
+  <div style="min-height: 70vh;">
+  <h1>Menú de hoy</h1>
+
+    <table id="Almuerzo">
       <tr>
-        <th class="colh col1">Lunes</th>
-        <th class="colh col2">Martes</th>
-        <th class="colh col3">Miércoles</th>
-        <th class="colh col4">Jueves</th>
-        <th class="colh col5">Viernes</th>
+        <th>Plato de Entrada</th>
+        <td> 
+        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($p1['receta_foto']); ?>"  height="50" /> 
+          <br>
+          <?php echo $p1['receta_nombre'] ?>  
+        </td>
       </tr>
+
       <tr>
-        <td class="col1">Entrada</td>
-        <td class="col2">Entrada</td>
-        <td class="col3">Entrada</td>
-        <td class="col4">Entrada</td>
-        <td class="col5">Entrada</td>
+        <th>Plato de Fondo  </th>
+        <td> 
+        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($p2['receta_foto']); ?>"  height="50" /> 
+          <br>
+          <?php echo $p2['receta_nombre'] ?>  
+        </td>
       </tr>
+
       <tr>
-        <td class="col1">Fondo</td>
-        <td class="col2">Fondo</td>
-        <td class="col3">Fondo</td>
-        <td class="col4">Fondo</td>
-        <td class="col5">Fondo</td>
-      </tr>
-      <tr>
-        <td class="col1">Postre</td>
-        <td class="col2">Postre</td>
-        <td class="col3">Postre</td>
-        <td class="col4">Postre</td>
-        <td class="col5">Postre</td>
+        <th>Postre          </th>
+        <td> 
+          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($p3['receta_foto']); ?>"  height="50" /> 
+          <br>
+          <?php echo $p3['receta_nombre'] ?>  
+
+        </td>
       </tr>
     </table>
 
   </div>
+
+  <br>
+
+
+<h1>Menú Semanal</h1>'
+
+<table id="Semanal" style="margin-bottom: 50px;">
+  <tr>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miércoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+  </tr>
+
+  <tr>
+  <?php while ($row = mysqli_fetch_assoc($entradas)){ ?>
+      <td class="col1">
+      <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['receta_foto']); ?>"  height="50" /> 
+      <br>
+      <?php echo $row['receta_nombre'] ?> 
+      </td>
+  <?php } ?>
+  </tr>
+
+  <tr>
+    <?php while ($row = mysqli_fetch_assoc($platos)){?>
+    <td class="col1">
+    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['receta_foto']); ?>"  height="50" /> 
+    <br>
+    <?php echo $row['receta_nombre'] ?> 
+    </td>
+    <?php } ?>
+  </tr>
+
+  <tr>
+    <?php while ($row = mysqli_fetch_assoc($postres)) { ?>
+    <td class="col1">
+    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['receta_foto']); ?>"  height="50" /> 
+    <br>
+    <?php echo $row['receta_nombre'] ?> 
+    </td>
+    <?php } ?>
+  </tr>
+
+  </table>
+
+</div>
 
 <?php include 'base_bottom.php' ?>
