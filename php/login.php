@@ -1,7 +1,9 @@
 
 <?php include 'base_top.php' ?>
 
-    <div style="text-align: center;">
+    <div class="cuerpo">
+
+        <div id="loginbox">
         <form action="../includes/login.inc.php" method="post">
             <h1> Login </h1>
             <?php if (isset($_GET['error'])) { ?> 
@@ -18,22 +20,13 @@
         <?php 
         check_login_errors();
         ?>
+        </div>
 
-                
-        <h1>Registrarse</h1>
+        <p style="font-family: Lufga"> ¿No posees una cuenta? Registrate 
+        <a title="Registrate" href="registro.php"> AQUÍ </a>.
+        
+        </p>
 
-        <form action="../includes/signup.inc.php", method = "post">
-
-            <?php
-            signup_inputs();
-            ?>
-            <button>Crear cuenta nueva</button>
-
-        </form>
-
-        <?php
-        check_signup_errors();
-        ?>
     </div>
     
 <?php include 'base_bottom.php' ?>

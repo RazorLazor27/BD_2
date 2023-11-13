@@ -139,6 +139,13 @@ h1
     color:#184464;
 }
 
+#Login .cuerpo a
+{
+    font-family: "Lufga";
+    text-decoration: none;
+    color: #000000;
+}
+
 /* ------------------------ Estructura Básica: Pie de página ------------------------ */
 .piedepagina
 {

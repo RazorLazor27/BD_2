@@ -1,5 +1,6 @@
-<?php 
-/* Incrustar franja superior*/ 
+<?php
+
+/* Incrustar franja superior y conectarse a la base de datos */
 include 'base_top.php';
 
 $sql = "select * from recetas ";
@@ -36,16 +37,6 @@ $sql = $sql . " order by receta_type";
 
 //echo $sql;
 
-$servername="localhost";
-$username ="admin";
-$password = "!dBeK8jy21r/3nMt";
-$database = "primerabase";
-$conn = new mysqli($servername, $username, $password, $database);
-
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
 $recetas = mysqli_query($conn, $sql);
 ?>
 
@@ -71,12 +62,6 @@ $recetas = mysqli_query($conn, $sql);
   <label><input type="checkbox" name="tipos[]" value="3"> Postres</label>
   <input type="submit" value="Filtrar">
 </form>
-
-<?php
-
-
-
-?>
 
 <table id="Semanal" style="margin-bottom: 50px;">
 
@@ -154,7 +139,11 @@ $recetas = mysqli_query($conn, $sql);
 
 </div>
 
-<?php include 'base_bottom.php' ?>
+
+<?php
+/* Incrustar franja inferior */
+include 'base_bottom.php' 
+?>
 
 
 

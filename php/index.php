@@ -1,16 +1,7 @@
-<?php 
-/* Incrustar franja superior*/ 
+<?php
+
+/* Incrustar franja superior */
 include 'base_top.php';
-
-$servername="localhost";
-$username ="admin";
-$password = "!dBeK8jy21r/3nMt";
-$database = "primerabase";
-$conn = new mysqli($servername, $username, $password, $database);
-
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
 
 $entrada = mysqli_query($conn, "select * from recetas where receta_type=1 limit 1");
 $plato = mysqli_query($conn, "select * from recetas where receta_type=2 limit 1");
