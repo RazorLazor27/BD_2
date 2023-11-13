@@ -2,6 +2,39 @@
 /* Incrustar franja superior*/ 
 include 'base_top.php';
 
+$sql = "select * from recetas ";
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $filter = "";
+
+  if (isset($_POST["buscar"])) {    
+    $filter = " receta_instrucciones like '%" . $_POST["buscar"] . "%' ";
+  } 
+
+  echo $filter;
+
+  if (isset($_POST["tipos"])) {
+    $tipos = $_POST["tipos"];
+    if (count($tipos) > 0){
+      
+      $cond = " ";
+      foreach ($tipos as $tipo) {
+        $sql = $sql . $cond;
+        $sql = $sql . " receta_type = " . $tipo;
+        $cond = " or ";
+      } 
+    }
+    $sql = $sql . " where ";
+    $sql = $sql . $filter;
+  }
+}
+
+$sql = $sql . " order by receta_type";
+
+echo $sql;
+
 $servername="localhost";
 $username ="admin";
 $password = "!dBeK8jy21r/3nMt";
@@ -12,7 +45,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$recetas = mysqli_query($conn, "select * from recetas order by receta_type");
+$recetas = mysqli_query($conn, $sql);
 ?>
 
 <style>
@@ -20,12 +53,25 @@ $recetas = mysqli_query($conn, "select * from recetas order by receta_type");
 </style>
 
 <div class="cuerpo">
-
-
   <br>
 
 
 <h1>Recetas</h1>'
+
+<form method="post" name="buscar" action="">
+  <label>Buscar</label>
+  <input type="text" name="buscar" />
+  <label><input type="checkbox" name="tipos[]" value="1"> Entradas</label>
+  <label><input type="checkbox" name="tipos[]" value="2"> Platos</label>
+  <label><input type="checkbox" name="tipos[]" value="3"> Postres</label>
+  <input type="submit" value="Filtrar">
+</form>
+
+<?php
+
+
+
+?>
 
 <table id="Semanal" style="margin-bottom: 50px;">
 

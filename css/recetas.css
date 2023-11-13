@@ -10,12 +10,10 @@ trFila{
     width: 50px;
 }
 
-
 .tdNombre{
     width: 100px;
 
 }
-
 
 .tdPreparacion{
     
@@ -24,4 +22,9 @@ trFila{
 
 .tdOpcion{
     width: 50px;
+}
+
+.opcion{
+    margin-left: 500px;
+    text-align: left;    
 }
