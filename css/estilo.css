@@ -132,21 +132,21 @@ h1
     grid-row: 2;
 }
 
-/* ------------------------ Estructura Básica: Cuerpo/Contenido de la página ------------------------ */
+/* ------------------- Estructura Básica: Cuerpo/Contenido de la página ------------------- */
 .cuerpo
 {
     text-align: center;
     color:#184464;
 }
 
-#Login .cuerpo a
+/* ---- Cuerpo: Login ---- */
+
+#loginbox 
 {
-    font-family: "Lufga";
-    text-decoration: none;
-    color: #000000;
+    
 }
 
-/* ------------------------ Estructura Básica: Pie de página ------------------------ */
+/* --------------------------- Estructura Básica: Pie de página --------------------------- */
 .piedepagina
 {
 
