@@ -1,7 +1,7 @@
-<?php
-
-/* Incrustar franja superior */
+<?php 
+/* Incrustar franja superior*/ 
 include 'base_top.php';
+include 'bdconexion.php';
 
 $entrada = mysqli_query($conn, "select * from recetas where receta_type=1 limit 1");
 $plato = mysqli_query($conn, "select * from recetas where receta_type=2 limit 1");

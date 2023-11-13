@@ -5,7 +5,7 @@ require_once("../includes/login_view.inc.php");
 ?>
 
 <footer class="piedepagina">
-    <p>Hecho por loh choro' Nico y Flan
+    <p>Hecho por loh choro' Nico y Flan.
         <?php mostrar_nombre();  ?>
     </p>
 </footer>
