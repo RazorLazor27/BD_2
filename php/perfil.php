@@ -25,6 +25,7 @@ require_once("../includes/perfil_view.inc.php");
             <p id="demo"></p>
         </form>
 
+        
         <script>
             function borrar_cuenta_click() {
                 var r = confirm("¿Estas Seguro De Querer Borrar tu Cuenta?");
