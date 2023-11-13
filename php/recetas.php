@@ -4,36 +4,37 @@ include 'base_top.php';
 
 $sql = "select * from recetas ";
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $filter = "";
 
   if (isset($_POST["buscar"])) {    
-    $filter = " receta_instrucciones like '%" . $_POST["buscar"] . "%' ";
+    $filter = " receta_nombre like '%" . $_POST["buscar"] . "%' or receta_instrucciones like '%" . $_POST["buscar"] . "%' ";
   } 
-
-  echo $filter;
-
-  if (isset($_POST["tipos"])) {
+  
+  if (isset($_POST["tipos"])){
+    $fTipos = "";
     $tipos = $_POST["tipos"];
     if (count($tipos) > 0){
-      
       $cond = " ";
-      foreach ($tipos as $tipo) {
+      foreach ($tipos as $tipo){
         $sql = $sql . $cond;
         $sql = $sql . " receta_type = " . $tipo;
         $cond = " or ";
       } 
     }
-    $sql = $sql . " where ";
-    $sql = $sql . $filter;
-  }
+  }  
+
+  $sql = $sql . " where ";
+  $sql = $sql . $filter;
+
+  //echo $sql;
+
 }
 
 $sql = $sql . " order by receta_type";
 
-echo $sql;
+//echo $sql;
 
 $servername="localhost";
 $username ="admin";
@@ -59,6 +60,10 @@ $recetas = mysqli_query($conn, $sql);
 <h1>Recetas</h1>'
 
 <form method="post" name="buscar" action="">
+  <table>
+    </
+
+
   <label>Buscar</label>
   <input type="text" name="buscar" />
   <label><input type="checkbox" name="tipos[]" value="1"> Entradas</label>
