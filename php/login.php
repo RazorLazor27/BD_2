@@ -22,9 +22,9 @@
         ?>
         </div>
 
+
         <p style="font-family: Lufga"> ¿No posees una cuenta? Registrate 
         <a title="Registrate" href="registro.php"> AQUÍ </a>.
-        
         </p>
 
     </div>
