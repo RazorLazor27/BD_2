@@ -210,10 +210,15 @@ $recetas = mysqli_query($conn, $sql);
       <td class="tdNombre"><?php echo $row['receta_tiempo']; ?> <br>[min]</td>
 
       <td class="tdOpcion">
-          <form action="">
+        
+          <form action="../includes/userfood.inc.php" method="post">
+            <input type="hidden" name="id_receta_user" value=<?php echo $row["receta_id"] ?> >
             <button>Agregar</button>
           </form>
       </td>
+      <td> <p> <?php echo $row["receta_id"] ?> </p></td>
+
+
     </tr>
   <?php } ?>
   </table>
