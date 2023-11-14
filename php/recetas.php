@@ -216,7 +216,6 @@ $recetas = mysqli_query($conn, $sql);
             <button>Agregar</button>
           </form>
       </td>
-      <td> <p> <?php echo $row["receta_id"] ?> </p></td>
 
 
     </tr>

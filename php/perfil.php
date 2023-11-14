@@ -4,6 +4,17 @@ require_once("../includes/perfil_view.inc.php");
 <?php include 'base_top.php' ?>
 <html>
     <style>
+        table {
+            width: 61.31%;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-gap: 10px;
+            border: 1px solid grey;
+        }
+        th,td {
+            border: 1px solid grey;
+            padding: 10px;
+        }
         .pill-mass{
             font-size: 12px;
             font-family: "Raedex Pro", sans-serif;
@@ -136,20 +147,107 @@ require_once("../includes/perfil_view.inc.php");
                 
                 
             </div>
-            
-            
         </div>
         <div class="listafav">
             <div class="fav-card">
-                
+                <h4>Lista de Recetas Favoritas</h4>
+                <table>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Tipo</th>
+                        <th>Nombre</th>
+                        <th>Instrucciones</th>
+                        <th>Diabetico</th>
+                        <th>Lactosa</th>
+                        <th>Gluten</th>
+                        <th>Vegana</th>
+                    </tr>
+
+                    <?php
+                        require_once("../includes/dbh.inc.php");
+                        $query = "Select * from primerabase.user_recipe_names where id = :id_user_food;";
+                        $resultado_view= $pdo->prepare($query);
+                        $resultado_view->bindParam(":id_user_food", $_SESSION["user_id"]);
+                        $resultado_view->execute();
+
+                        $resultado = $resultado_view->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
+                    
+                    <?php foreach($resultado as $row) {?>
+                        <tr>
+
+                        <td>
+                            <a title="Ingredientes" <?php echo "href=receta.php?id=" . $row['receta_id'] . " " ?>  >        
+                            <img src="data:../image/jpg;charset=utf8;base64,<?php echo base64_encode($row['receta_foto']); ?>"  height="50" />
+                            </a>
+                        </td>
+
+                        <td>
+                            <?php 
+                            if ($row['receta_type'] == 1) {
+                                echo "Entrada";
+                            } elseif ($row['receta_type'] == 2) {
+                                echo "Plato";
+                            } elseif ($row['receta_type'] == 3) {
+                                echo "postre";
+                            }
+                            ?> 
+                        </td>
+
+                        <td>
+                         <?php echo $row["receta_nombre"]?>
+                        </td>
+
+                        <td>
+                            <?php echo $row["receta_instrucciones"]?>
+                        </td>
+                        <td>
+                            <?php 
+                            if ($row["receta_diabetico"] == 1){
+                                echo "Si";
+                            } else {
+                                echo "NO";
+                            }
+                            
+                            ?>
+                        </td>
+                        <td>
+                        <?php 
+                            if ($row["receta_lactosa"] == 1){
+                                echo "Si";
+                            } else {
+                                echo "NO";
+                            }
+                            
+                            ?>
+                        </td>
+                        <td>
+                        <?php 
+                            if ($row["receta_gluten"] == 1){
+                                echo "SI";
+                            } else {
+                                echo "NO";
+                            }
+                            
+                            ?>
+                        </td>
+                        <td>
+                        <?php 
+                            if ($row["receta_vegan"] == 1){
+                                echo "Si";
+                            } else {
+                                echo "NO";
+                            }
+                            
+                            ?>
+                        </td>
+                            
+                        </tr>
+                    <?php } ?>
+                </table>
             </div>
-            
         </div>
     </div>
-    
-
-    
-
 </html> 
 
     
