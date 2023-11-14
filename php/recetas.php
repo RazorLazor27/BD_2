@@ -133,6 +133,12 @@ $recetas = mysqli_query($conn, $sql);
       </td>      
       
       <td class="tdNombre"><?php echo $row['receta_tiempo']; ?> <br>[min]</td>
+
+      <td class="tdOpcion">
+          <form action="">
+            <button>Agregar</button>
+          </form>
+      </td>
     </tr>
   <?php } ?>
   </table>
