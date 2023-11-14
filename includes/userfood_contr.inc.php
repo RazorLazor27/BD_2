@@ -11,3 +11,10 @@ function receta_seleccionada(object $pdo, int $idUser, int $idComida){
     }
 }
 
+function anadir_comida(object $pdo, int $idUser, int $idComida){
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    set_comida($pdo, $idUser, $idComida);
+}
+
