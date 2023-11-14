@@ -1,5 +1,25 @@
 table {   
   background:white;
+  margin-left: 50px;  
+  margin-right: auto;
+  min-height: 60vh;
+  min-width: 180vh;
+  table-layout: fixed;
+  font-family: "Lufga";
+  border-collapse: collapse;
+}
+
+table td{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #184464;
+    color: white;
 }
   
 trFila{
@@ -12,7 +32,6 @@ trFila{
 
 .tdNombre{
     width: 100px;
-
 }
 
 .tdPreparacion{
@@ -28,3 +47,17 @@ trFila{
     margin-left: 500px;
     text-align: left;    
 }
+
+.busqueda{
+    display: flex;    
+    margin-left: 50px;
+    height: 25px;    
+    margin-bottom: 10px;
+}
+
+.separador{
+    width: 50px;
+    font-weight: bold;
+    font-size: 20;    
+}
+

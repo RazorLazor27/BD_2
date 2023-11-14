@@ -5,32 +5,91 @@ include 'base_top.php';
 
 $sql = "select * from recetas ";
 
+$buscar = "";
+
+$entrada = false;
+$fondo = false;
+$postre = false;
+
+$diabetico = "";
+$lactosa = "";
+$gluten = "";
+$vegana = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $filter = "";
+  $conector = "";
 
-  if (isset($_POST["buscar"])) {    
-    $filter = " receta_nombre like '%" . $_POST["buscar"] . "%' or receta_instrucciones like '%" . $_POST["buscar"] . "%' ";
+  if (isset($_POST["buscar"])) {
+    $buscar = $_POST["buscar"];    
+    if (strlen($buscar) > 0){
+      $filter = $filter . " (receta_nombre like '%" . $_POST["buscar"] . "%' or receta_instrucciones like '%" . $_POST["buscar"] . "%') ";
+      $conector = " and ";
+    }
   } 
-  
+
+  if (isset($_POST["diabetico"])) {    
+    $diabetico = $_POST["diabetico"];
+    if (strlen($diabetico) > 0){
+      $filter = $filter . $conector . " receta_diabetico = '" . $_POST["diabetico"] . "' ";
+      $conector = " and ";    
+    }
+  } 
+
+  if (isset($_POST["lactosa"])) {    
+    $lactosa = $_POST["lactosa"];
+    if (strlen($lactosa) > 0){
+      $filter = $filter . $conector . " receta_lactosa = '" . $_POST["lactosa"] . "' ";
+      $conector = " and ";
+    }
+  }
+
+  if (isset($_POST["gluten"])) {    
+    $gluten = $_POST["gluten"];
+    if (strlen($gluten) > 0){
+      $filter = $filter . $conector . " receta_gluten = '" . $_POST["gluten"] . "' ";
+      $conector = " and ";
+    }
+  }
+
+  if (isset($_POST["vegana"])) {    
+    $vegana = $_POST["vegana"];
+    if (strlen($vegana) > 0){
+      $filter = $filter . $conector . " receta_vegan = '" . $_POST["vegana"] . "' ";
+      $conector = " and ";
+    }
+  }
+
   if (isset($_POST["tipos"])){
     $fTipos = "";
     $tipos = $_POST["tipos"];
     if (count($tipos) > 0){
       $cond = " ";
-      foreach ($tipos as $tipo){
-        $sql = $sql . $cond;
-        $sql = $sql . " receta_type = " . $tipo;
+      $ftrType = "(";
+
+      foreach ($tipos as $tipo){        
+        if ($tipo == 1) $entrada = true;
+        if ($tipo == 2) $fondo = true;
+        if ($tipo == 3) $postre = true;
+        $ftrType = $ftrType . $cond . " receta_type = " . $tipo;
         $cond = " or ";
       } 
+
+      $ftrType = $ftrType . ")";
+      $conector = " and ";
     }
-  }  
 
-  $sql = $sql . " where ";
-  $sql = $sql . $filter;
+    $filter = $filter . $conector . $ftrType;
+    $conector = " and ";
 
-  //echo $sql;
+  }
 
+  if (strlen($filter))
+  {
+    $sql = $sql . " where ";
+    $sql = $sql . $filter;  
+  }
 }
 
 $sql = $sql . " order by receta_type";
@@ -45,27 +104,38 @@ $recetas = mysqli_query($conn, $sql);
 </style>
 
 <div class="cuerpo">
-  <br>
-
 
 <h1>Recetas</h1>'
 
-<form method="post" name="buscar" action="">
-  <table>
-    </
-
-
+<div class="busqueda" >
+  <form method="post" name="buscar" action="">
+    
   <label>Buscar</label>
-  <input type="text" name="buscar" />
-  <label><input type="checkbox" name="tipos[]" value="1"> Entradas</label>
-  <label><input type="checkbox" name="tipos[]" value="2"> Platos</label>
-  <label><input type="checkbox" name="tipos[]" value="3"> Postres</label>
+  <input type="text" name="buscar" <?php echo "value='" . $buscar . "' " ?>"/>  
+  <label><input type="checkbox" name="tipos[]" <?php if (strlen($entrada) > 0) { echo "checked"; } ?> value="1"> Entradas</label>
+  <label><input type="checkbox" name="tipos[]" <?php if (strlen($fondo) > 0) { echo "checked"; } ?> value="2"> Fondo</label>
+  <label><input type="checkbox" name="tipos[]" <?php if (strlen($postre) > 0) { echo "checked"; } ?> value="3"> Postres</label>
+
+  <label style="font-size: 20px;" class="separador"> | </label>
+  <label>Especial</label>
+  
+  <label><input type="checkbox" name="diabetico" <?php if (strlen($diabetico) > 0) { echo "checked"; } ?> value="1"> Diabetico</label>
+  <label><input type="checkbox" name="lactosa" <?php if (strlen($lactosa) > 0) { echo "checked"; } ?> value="1" > Lactosa</label>
+  <label><input type="checkbox" name="gluten" <?php if (strlen($gluten) > 0) { echo "checked"; } ?> value="1"> Gluten</label>
+  <label><input type="checkbox" name="vegana" <?php if (strlen($vegana) > 0) { echo "checked"; } ?> value="1"> Vegana</label>
+
+  <label style="font-size: 20px;" class="separador"> | </label>
+  
+  <label>Ingredientes</label>
+  <input type="text" name="ingredientes" />
   <input type="submit" value="Filtrar">
-</form>
 
-<table id="Semanal" style="margin-bottom: 50px;">
+  </form>
+</div>
 
-  <tr>
+<table>
+
+  <tr>    
     <th>Imagen</th>
     <th>Tipo</th>
     <th>Receta</th>
@@ -79,7 +149,12 @@ $recetas = mysqli_query($conn, $sql);
   
   <?php while ($row = mysqli_fetch_assoc($recetas)){ ?>
     <tr class="tfFila">
-      <td class="tdFoto"><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['receta_foto']); ?>"  height="50" /></td>
+
+      <td class="tdFoto">
+        <a title="Ingredientes" <?php echo "href=receta.php?id=" . $row['receta_id'] . " " ?>  >        
+          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['receta_foto']); ?>"  height="50" />
+        </a>
+      </td>
 
       <td class="tdNombre">
         <?php 
