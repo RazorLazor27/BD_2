@@ -22,5 +22,5 @@ function new_input_vacio(string $username, string $pwd, string $pwd2){
 }
 
 function new_actualizar_login(object $pdo, string $username, string $pwd, int $id){
-    new_update_user($pdo, $username, $pwd);
+    new_update_user($pdo, $username, $pwd, $id);
 }

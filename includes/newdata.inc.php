@@ -8,8 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     try {
         require_once "dbh.inc.php";
+        require_once "newdata_model.inc.php";
+        
         require_once "newdata_contr.inc.php";
-        require_once "newdata_contr.inc.php";
+        
 
         $errors = [];
 
@@ -20,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
         
 
-        require_once("config_session.inc.php");
+        //require_once("config_session.inc.php");
 
         if ($errors){
             $_SESSION["errors_login"] = $errors;
@@ -30,13 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         $result = new_get_user($pdo, $old_username);
-        $aux = $result["id"];
+        $aux = $_SESSION["user_id"];
 
 
         new_actualizar_login($pdo,$username,$pwd,$aux);
 
         
-        actualizar_login($pdo, $username,$aux);
+        
 
         $newSessionId = session_create_id();
         $sessionId = $newSessionId . "_" . $result["id"];
@@ -56,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
 
 
-        header("Location: ../php/perfil.php?login=success");
+        header("Location: ../php/login.php");
         
         $pdo = null;
         $statement = null;

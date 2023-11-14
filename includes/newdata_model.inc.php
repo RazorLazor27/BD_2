@@ -14,7 +14,7 @@ function new_get_user(object $pdo, string $username){
 
 
 function new_update_user(object $pdo, string $username, string $pwd , int $id){
-    $query = "UPDATE users SET user_name = :new_username, pwd= :new_pwd WHERE id =:old_id;";
+    $query = "UPDATE users SET user_name = :new_username, user_password= :new_pwd WHERE id =:old_id;";
     $stmt = $pdo->prepare($query);
 
     $options = [
