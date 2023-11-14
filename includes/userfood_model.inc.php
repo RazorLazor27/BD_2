@@ -2,12 +2,19 @@
 
 declare(strict_types= 1);
 
+//Si esta funcion retorna verdadero, entonces la comida seleccionada ya existe en la lista del usuario,
+//Por ende, no agregar
 
-function receta_seleccionada(object $pdo, int $idUser, int $idComida){
-    
-    $query = "INSERT INTO users (user_name, user_password, email, user_num_almuerzos, 
-    users_login_date, users_login_hour) VALUES
-    (:username, :pwd, :email, :num, :tdate, :ttime)";
+
+function get_receta(object $pdo, int $idUser, int $idComida){
+    $query = "SELECT receta_id FROM users_fav_food WHERE receta_id = :receta AND ;";
+
+    $stmt = $pdo->prepare($query);
+    //$stmt->bindParam(":email", $mail);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
 }
 
 ?>
