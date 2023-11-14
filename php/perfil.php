@@ -5,7 +5,7 @@ require_once("../includes/perfil_view.inc.php");
 <html>
     <style>
         table {
-            width: 61.31%;
+            width: 60.7%;
             display: grid;
             grid-template-columns: repeat(3,1fr);
             grid-gap: 10px;
