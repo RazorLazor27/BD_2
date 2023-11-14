@@ -1,39 +1,41 @@
 <?php 
+session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-    $username = $_POST["username"];
-    $pwd = $_POST["pwd"];
+    $old_username = $_SESSION["user_username"];
+    $username = $_POST["newusername"];
+    $pwd = $_POST["newpwd"];
+    $pwd2 = $_POST["newpwd2"];
 
     try {
         require_once "dbh.inc.php";
-        require_once "login_model.inc.php";
-        require_once "login_contr.inc.php";
+        require_once "newdata_contr.inc.php";
+        require_once "newdata_contr.inc.php";
 
         $errors = [];
 
-        if (input_vacio($username, $pwd)){
+        if (new_input_vacio($username, $pwd, $pwd2)) {
             $errors["input_vacio"] = "Por favor llenar todos los campos";
         }
 
-        $result = get_user($pdo, $username);
         
-        if (usuario_no_existe($result)){
-            $errors["login_incorrect"] = "Informacion del Login incorrecta!";
-        }
-
-        if(!usuario_no_existe($result) && is_password_wrong($pwd, $result["user_password"])){
-            $errors["login_incorrect"] = "Informacion del Login incorrecta!";
-        }
+        
 
         require_once("config_session.inc.php");
 
         if ($errors){
             $_SESSION["errors_login"] = $errors;
-            header("Location: ../php/login.php");
+            header("Location: ../php/perfil.php");
             die();
         }
 
+
+        $result = new_get_user($pdo, $old_username);
         $aux = $result["id"];
+
+
+        new_actualizar_login($pdo,$username,$pwd,$aux);
+
+        
         actualizar_login($pdo, $username,$aux);
 
         $newSessionId = session_create_id();
@@ -41,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         session_id($sessionId);
 
         $_SESSION["user_id"] = $result["id"];
-        $_SESSION["user_username"] = $result["user_name"];
+        $_SESSION["user_username"] = $username;
         $_SESSION["email"] = $result["email"];
         $_SESSION["login_date"] = $result["users_login_date"];
         $_SESSION["login_time"] = $result["users_login_hour"];
@@ -54,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
 
 
-        header("Location: ../php/index.php?login=success");
+        header("Location: ../php/perfil.php?login=success");
         
         $pdo = null;
         $statement = null;
@@ -68,4 +70,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     header("Location: ../php/login.php");
     die();
 }
-

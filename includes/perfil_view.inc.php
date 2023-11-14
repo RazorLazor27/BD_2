@@ -21,7 +21,10 @@ function MostrarPerfil(){
     }
      
 }
-
+function getAlmuerzos(){
+    $val = $_SESSION["user_almuerzos"];
+    echo $val;
+}
 function getName(){
     $nom = $_SESSION["user_username"];
     echo htmlspecialchars($nom);
