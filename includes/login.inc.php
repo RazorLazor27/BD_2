@@ -16,7 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         $result = get_user($pdo, $username);
-        actualizar_login($pdo, $username);
+        $aux = $result["id"];
+        actualizar_login($pdo, $username,$aux);
         if (usuario_no_existe($result)){
             $errors["login_incorrect"] = "Informacion del Login incorrecta!";
         }
