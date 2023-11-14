@@ -4,12 +4,14 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $username = $_SESSION["username"];
+    $idUser = $_SESSION["id"];
+    $idComida = 127; //Netamente un ejemplo
     try {
         require_once "dbh.inc.php";
 
         $errors = [];
 
-        if (receta_seleccionada($username)){
+        if (receta_seleccionada($pdo, $idUser, $idComida)){
             $errors["trago_seleccionado"] = "El trago ya ha sido seleccionado!";
         }
 

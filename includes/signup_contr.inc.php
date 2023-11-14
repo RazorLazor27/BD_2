@@ -44,3 +44,5 @@ function crear_usuario(object $pdo, string $username, string $pwd, string $email
     set_usuario($pdo, $username, $pwd, $email);
 }
 
+
+

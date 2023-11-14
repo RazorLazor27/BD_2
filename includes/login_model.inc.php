@@ -15,7 +15,7 @@ function get_user(object $pdo, string $username){
     return $result;
 }
 
-function update_user(object $pdo, string $username){
+function update_user(object $pdo, string $username, int $id){
     $tdate=date("Y-m-d");
     $ttime=date("H:i:s");
 
@@ -30,4 +30,17 @@ function update_user(object $pdo, string $username){
     $stmt->bindParam(':username', $username);
 
     $stmt->execute();
+
+    $query = "INSERT INTO users_fav_food (id)
+    SELECT :id_usuario
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM users_fav_food
+        WHERE id = :id_usuario
+    );";
+    
+    $stmt2 = $pdo->prepare($query);
+
+    $stmt2->bindParam(":id_usuario", $id);
+    $stmt2->execute();
 }
