@@ -29,11 +29,14 @@ include 'bdconexion.php';
         </a>
         </div>
         <div class = "Boton Top_10">
-        <a class="FullBoton" title="Listados de top 10 de mejores y peores recetas según calificación." href="top.php">TOP 10</a>
+        <a class="FullBoton" title="Listados de top 10 de mejores y peores recetas según calificación." href="top10.php">TOP 10</a>
         </div>
+
+        
         <div class = "Boton Votacion">
         <a class="FullBoton" title="Votación Semanal para elegir el plato de fondo de los días Viernes." href="votacion.php">Votación semanal</a>
         </div>
+        
         <div class = "Boton Usuario">
             <?php
             //Esto significa que estamos logeados

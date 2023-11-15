@@ -30,7 +30,7 @@ require_once("../includes/perfil_view.inc.php");
             border-radius: 1em;
             
         }
-        .container {            
+        .container {
         }
         .listafav{
             width: 1100px;

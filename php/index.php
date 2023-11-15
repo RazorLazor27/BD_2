@@ -11,7 +11,7 @@ $p2 = mysqli_fetch_assoc($plato);
 $p3 = mysqli_fetch_assoc($postre);  
 
 $entradas = mysqli_query($conn, "select * from recetas where receta_type=1 limit 5");
-$platos = mysqli_query($conn, "select * from recetas where receta_type=2 limit 5");
+$platos = mysqli_query($conn, "select * from recetas where receta_type=2 limit 4");
 $postres = mysqli_query($conn, "select * from recetas where receta_type=3 limit 5");
 ?>
 

@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         try {
             $stmt->execute();
         } catch (PDOException $e) {
-            echo "CAGO LA WEA". $e->getMessage();
+            echo "No funciono". $e->getMessage();
         }
         $pdo = null;
         $stmt = null;

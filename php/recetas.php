@@ -3,9 +3,14 @@
 /* Incrustar franja superior y conectarse a la base de datos */
 include 'base_top.php';
 
-$sql = "select * from recetas ";
+$sql = "select ";
+$sql = $sql . "receta_id, receta_foto, receta_nombre, receta_instrucciones, receta_tiempo, receta_diabetico, receta_lactosa, receta_gluten, receta_vegan, receta_type ";
+$sql = $sql . "from recetas ";
+$sql = $sql . "left join lista_ingredientes on recetas.receta_id = lista_ingredientes.idReceta ";
+$sql = $sql . "left join ingredientes on lista_ingredientes.ingre_id = ingredientes.ingre_id  ";
 
 $buscar = "";
+$ingredientes = "";
 
 $entrada = false;
 $fondo = false;
@@ -28,6 +33,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $conector = " and ";
     }
   } 
+
+  if (isset($_POST["tipos"])){
+
+    
+
+    $fTipos = "";
+    $tipos = $_POST["tipos"];
+    if (count($tipos) > 0){
+      $cond = " ";
+      $ftrType = "(";
+
+      foreach ($tipos as $tipo){        
+        if ($tipo == 1) $entrada = true;
+        if ($tipo == 2) $fondo = true;
+        if ($tipo == 3) $postre = true;
+        $ftrType = $ftrType . $cond . " receta_type = " . $tipo;
+        $cond = " or ";
+      } 
+
+      $ftrType = $ftrType . ")";            
+    }
+
+    $filter = $filter . $conector . $ftrType;
+    $conector = " and ";
+
+    
+  }
+  
 
   if (isset($_POST["diabetico"])) {    
     $diabetico = $_POST["diabetico"];
@@ -61,29 +94,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 
-  if (isset($_POST["tipos"])){
-    $fTipos = "";
-    $tipos = $_POST["tipos"];
-    if (count($tipos) > 0){
-      $cond = " ";
-      $ftrType = "(";
-
-      foreach ($tipos as $tipo){        
-        if ($tipo == 1) $entrada = true;
-        if ($tipo == 2) $fondo = true;
-        if ($tipo == 3) $postre = true;
-        $ftrType = $ftrType . $cond . " receta_type = " . $tipo;
-        $cond = " or ";
-      } 
-
-      $ftrType = $ftrType . ")";
+  if (isset($_POST["ingredientes"])) {
+    $ingredientes = $_POST["ingredientes"];    
+    if (strlen($ingredientes) > 0){
+      $filter = $filter . $conector . " ingredientes.ingre_nombre like '%" . $_POST["ingredientes"] . "%' ";
       $conector = " and ";
     }
+  } 
+  
 
-    $filter = $filter . $conector . $ftrType;
-    $conector = " and ";
-
-  }
 
   if (strlen($filter))
   {
@@ -92,6 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 
+$sql = $sql . " group by receta_id, receta_foto, receta_nombre, receta_instrucciones, receta_tiempo, receta_diabetico, receta_lactosa, receta_gluten, receta_vegan, receta_type ";
 $sql = $sql . " order by receta_type";
 
 //echo $sql;
@@ -111,7 +131,7 @@ $recetas = mysqli_query($conn, $sql);
   <form method="post" name="buscar" action="">
     
   <label>Buscar</label>
-  <input type="text" name="buscar" <?php echo "value='" . $buscar . "' " ?>"/>  
+  <input type="text" name="buscar" <?php echo "value='" . $buscar . "' " ?> />  
   <label><input type="checkbox" name="tipos[]" <?php if (strlen($entrada) > 0) { echo "checked"; } ?> value="1"> Entradas</label>
   <label><input type="checkbox" name="tipos[]" <?php if (strlen($fondo) > 0) { echo "checked"; } ?> value="2"> Fondo</label>
   <label><input type="checkbox" name="tipos[]" <?php if (strlen($postre) > 0) { echo "checked"; } ?> value="3"> Postres</label>
@@ -127,7 +147,7 @@ $recetas = mysqli_query($conn, $sql);
   <label style="font-size: 20px;" class="separador"> | </label>
   
   <label>Ingredientes</label>
-  <input type="text" name="ingredientes" />
+  <input type="text" name="ingredientes"  <?php echo "value='" . $ingredientes . "' " ?> />
   <input type="submit" value="Filtrar">
 
   </form>
@@ -145,6 +165,8 @@ $recetas = mysqli_query($conn, $sql);
     <th>Gluten</th>
     <th>Vegana</th>  
     <th>Tiempo</th>  
+    <th>Añadir a Favoritos</th>
+    <th>Calificar</th>
   </tr>
   
   <?php while ($row = mysqli_fetch_assoc($recetas)){ ?>
@@ -217,6 +239,30 @@ $recetas = mysqli_query($conn, $sql);
           </form>
       </td>
 
+		<td class="tdCalificar">
+
+			<a title="1" <?php echo "href=calificar.php?idReceta=" . $row['receta_id'] . "&calificacion=1" ?>  >
+				<img src='../images/star.png' width="24" height="24"/>				
+			</a>
+
+			<a title="2" <?php echo "href=calificar.php?idReceta=" . $row['receta_id'] . "&calificacion=2" ?>  >
+				<img src='../images/star.png' width="24" height="24"/>
+			</a>
+
+			<a title="3" <?php echo "href=calificar.php?idReceta=" . $row['receta_id'] . "&calificacion=3" ?>  >
+				<img src='../images/star.png' width="24" height="24"/>
+			</a>
+
+			<a title="4" <?php echo "href=calificar.php?idReceta=" . $row['receta_id'] . "&calificacion=4" ?>  >
+				<img src='../images/star.png' width="24" height="24"/>
+			</a>
+
+			<a title="5" <?php echo "href=calificar.php?idReceta=" . $row['receta_id'] . "&calificacion=5" ?>  >
+				<img src='../images/star.png' width="24" height="24"/>
+			</a>
+
+		</td>
+
 
     </tr>
   <?php } ?>
@@ -227,7 +273,8 @@ $recetas = mysqli_query($conn, $sql);
 
 <?php
 /* Incrustar franja inferior */
-include 'base_bottom.php' 
+include 'base_bottom.php';
+
 ?>
 
 
